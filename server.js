@@ -48,13 +48,12 @@ app.get('/', (req, res) => {
 
 // Handle form submission
 app.post('/submit', (req, res) => {
-  console.log(res.body);
-  if (!req?.body?.name) res.send('Name is required').status(400);
-  if (!req?.body?.year) res.send('Year is required').status(400);
-  if (!req?.body?.branch) res.send('Branch is required').status(400);
-  if (!req?.body?.item) res.send('Item is required').status(400);
-  if (!req?.body?.phone) res.send('Phone is required').status(400);
-  if (!req?.body?.quantity) res.send('Quantity is required').status(400);
+  if (!req?.body?.name) res.status(400).send('Name is required');
+  if (!req?.body?.year) res.status(400).send('Year is required');
+  if (!req?.body?.branch) res.status(400).send('Branch is required');
+  if (!req?.body?.item) res.status(400).send('Item is required');
+  if (!req?.body?.phone) res.status(400).send('Phone is required');
+  if (!req?.body?.quantity) res.status(400).send('Quantity is required');
 
   const { name, year, branch, item, phone, quantity } = req.body;
 
@@ -78,6 +77,8 @@ app.post('/submit', (req, res) => {
       // Send error response to the frontend
       res.status(500).send('Error submitting order');
     });
+
+  res.status(200).send('Order submitted successfully');
 });
 
 // Start the server
