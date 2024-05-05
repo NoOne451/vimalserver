@@ -66,17 +66,24 @@ app.post('/submit', async (req, res) => {
     quantity,
   });
 
-  await newOrder
-    .save()
-    .then(() => {
-      // Send success response to the frontend
-      res.status(200).send('Order submitted successfully');
-    })
-    .catch((err) => {
-      console.error('Error submitting order:', err);
-      // Send error response to the frontend
-      res.status(500).send('Error submitting order');
-    });
+  // const order = await newOrder
+  //   .save()
+  //   .then(() => {
+  //     // Send success response to the frontend
+  //     res.status(200).send('Order submitted successfully');
+  //   })
+  //   .catch((err) => {
+  //     console.error('Error submitting order:', err);
+  //     // Send error response to the frontend
+  //     res.status(500).send('Error submitting order');
+  //   });
+  try {
+    const order = await newOrder.save();
+    console.log(order);
+    res.status(200).send('Order submitted successfully');
+  } catch (error) {
+    res.status(500).send('Error submitting order');
+  }
 });
 
 // Start the server
