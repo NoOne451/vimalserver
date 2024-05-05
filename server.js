@@ -48,6 +48,13 @@ app.get('/', (req, res) => {
 
 // Handle form submission
 app.post('/submit', (req, res) => {
+  if (!req.body?.name) res.send('Name is required').status(400);
+  if (!req.body?.year) res.send('Year is required').status(400);
+  if (!req.body?.branch) res.send('Branch is required').status(400);
+  if (!req.body?.item) res.send('Item is required').status(400);
+  if (!req.body?.phone) res.send('Phone is required').status(400);
+  if (!req.body?.quantity) res.send('Quantity is required').status(400);
+
   const { name, year, branch, item, phone, quantity } = req.body;
 
   const newOrder = new Order({
