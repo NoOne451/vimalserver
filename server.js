@@ -34,7 +34,7 @@ const orderSchema = new mongoose.Schema({
 const Order = mongoose.model('Order', orderSchema);
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Serve static files from the frontend directory
 app.use(express.static(path.join(__dirname, '../frontend')));
