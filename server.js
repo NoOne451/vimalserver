@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 });
 
 // Handle form submission
-app.post('/submit', (req, res) => {
+app.post('/submit', async (req, res) => {
   if (!req?.body?.name) res.status(400).send('Name is required');
   if (!req?.body?.year) res.status(400).send('Year is required');
   if (!req?.body?.branch) res.status(400).send('Branch is required');
@@ -66,7 +66,7 @@ app.post('/submit', (req, res) => {
     quantity,
   });
 
-  newOrder
+  await newOrder
     .save()
     .then(() => {
       // Send success response to the frontend
@@ -77,8 +77,6 @@ app.post('/submit', (req, res) => {
       // Send error response to the frontend
       res.status(500).send('Error submitting order');
     });
-
-  res.status(200).send('Order submitted successfully');
 });
 
 // Start the server
