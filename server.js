@@ -48,6 +48,7 @@ app.get('/', (req, res) => {
 
 // Handle form submission
 app.post('/submit', (req, res) => {
+  console.log(res.body);
   if (!req?.body?.name) res.send('Name is required').status(400);
   if (!req?.body?.year) res.send('Year is required').status(400);
   if (!req?.body?.branch) res.send('Branch is required').status(400);
