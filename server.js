@@ -56,7 +56,7 @@ app.post('/submit', async (req, res) => {
   if (!req?.body?.quantity) res.status(400).send('Quantity is required');
 
   const { name, year, branch, item, phone, quantity } = req.body;
-
+  console.log(name, year, branch, item, phone, quantity);
   const newOrder = new Order({
     name,
     year,
