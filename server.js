@@ -4,8 +4,14 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
+const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 // MongoDB setup
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
