@@ -46,6 +46,15 @@ app.get('/', (req, res) => {
   res.json('Server is Working');
 });
 
+app.get("/orders", async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (error) {
+    res.status(500).send("Error fetching orders");
+  }
+});
+
 // Handle form submission
 app.post('/submit', async (req, res) => {
   if (!req?.body?.name) res.status(400).send('Name is required');
