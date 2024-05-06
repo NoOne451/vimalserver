@@ -55,6 +55,18 @@ app.get("/orders", async (req, res) => {
   }
 });
 
+app.delete("/orders/:id", async (req, res) => {
+  try {
+    const order = await Order.findByIdAndDelete(req.params.id);
+    if (!order) {
+      return res.status(404).send("Order not found");
+    }
+    res.send("Order deleted successfully");
+  } catch (error) {
+    res.status(500).send("Error deleting order");
+  }
+});
+
 // Handle form submission
 app.post('/submit', async (req, res) => {
   if (!req?.body?.name) res.status(400).send('Name is required');
